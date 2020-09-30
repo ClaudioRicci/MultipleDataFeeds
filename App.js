@@ -28,7 +28,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: false });
     const urls = [
       "./api/branch1.json",
       "./api/branch2.json",
@@ -43,13 +43,116 @@ class App extends Component {
           result[1].products,
           result[2].products
         ];
+        console.log(nested);
+        // console.log(typeof result[0].products);
         // console.log(result[0].products);
         // let mergedObj = nested.reduce((acc, obj) => {
         //   if(acc[obj.product])
         // })
 
-        let flat = nested.reduce((acc, it) => [...acc, ...it]);
-        console.log(flat);
+        let allProducts = nested.reduce((acc, current) => [...acc, ...current]);
+        allProducts.sort((a, b) =>
+          a.name.localeCompare(b.name, "en", { sensitivity: "base" })
+        );
+        console.log(allProducts);
+        // let res = allProducts.reduce(
+        //   (a, b) => a.set(b.name, (a.get(b.name) || 0) + Number(b.sold)),
+        //   new Map()
+        // );
+        // const productsSold = Array.from(res);
+
+        // console.log(productsSold);
+        this.setState({ allProducts: allProducts });
+        // this.setState({ allProducts: productsSold });
+        // const idAndSold = flat.map(
+        //   ({ name, unitPrice, ...keepAttrs }) => keepAttrs
+        // );
+        // const productDetails = flat.map(({ sold, ...keepAttrs }) => keepAttrs);
+        // console.log(idAndSold);
+        // console.log(productDetails);
+        // let productIdAndSold = idAndSold.reduce(
+        //   (a, b) => a.set(b.id, (a.get(b.id) || 0) + Number(b.sold)),
+        //   new Map()
+        // );
+
+        // let productFeatures = productDetails.reduce(
+        //   (a, b) => a.set(b.id, b.name, b.unitPrice),
+        //   new Map()
+        // );
+
+        // const productDescription = Array.from(productFeatures);
+        // console.log(productDescription);
+        // const productsSold = Array.from(productIdAndSold);
+
+        // console.log(productsSold);
+
+        // myArray.push(
+        //   result[0].products,
+        //   result[1].products,
+        //   result[2].products
+        // );
+        // console.log(myArray);
+        // myArray.push({ taxid: 1, tax_name: "VAT", tax_value: "25.00" });
+        // myArray.push({ taxid: 2, tax_name: "Service Tax", tax_value: "20.00" });
+        // myArray.push({ taxid: 1, tax_name: "VAT", tax_value: "25.00" });
+        // myArray.push({ taxid: 2, tax_name: "Service Tax", tax_value: "75.00" });
+
+        // let res = flat.reduce(
+        //   (a, b) => a.set(b.name, (a.get(b.name) || 0) + Number(b.sold)),
+        //   new Map()
+        // );
+
+        // const newArray = Array.from(res);
+        // console.log(newArray);
+        // console.log(res);
+        // console.log(flat);
+        // const arr = [
+        //   {
+        //     code: 1,
+        //     item: "ball",
+        //     salesman: "Braan",
+        //     quantity: 5,
+        //     price: 10.0
+        //   },
+        //   { code: 1, item: "shoe", salesman: "Alex", quantity: 5, price: 20.0 },
+        //   { code: 1, item: "ball", salesman: "Max", quantity: 3, price: 10.0 },
+        //   {
+        //     code: 1,
+        //     item: "shirt",
+        //     salesman: "Braan",
+        //     quantity: 5,
+        //     price: 15.0
+        //   }
+        // ];
+
+        // const list = [1, 2, 2];
+        // console.log(new Set(arr)); // Set(2) {1, 2}
+        // console.log([...new Set(arr)]); // [1,2]
+
+        // const values = new Set(arr); // Set(2) {1, 2}
+        // values.add(1); // this is essentially a no-op,
+        // values.add(2); // so is this
+        // console.log(values); // Set(2) {1, 2}
+
+        // const newArr = flat.map(obj => {
+        //   return {
+        //     id: obj.id,
+        //     name: obj.name,
+        //     unitPrice: obj.unitPrice,
+        //     sold: obj.sold
+        //   };
+        // });
+
+        // const newArr = arr.map(obj => {
+        //   return {
+        //     code: obj.code,
+        //     quantity: obj.quantity,
+        //     price: obj.price,
+        //     item: obj.item
+        //   };
+        // });
+
+        // console.log(newArr);
       });
   }
 
