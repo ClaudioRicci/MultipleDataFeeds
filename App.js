@@ -20,14 +20,15 @@ class App extends Component {
     this.state = {
       isLoading: false,
       isError: false,
-      branchData1: [],
-      branchData2: [],
-      branchData3: [],
+      // branchData1: [],
+      // branchData2: [],
+      // branchData3: [],
       allProducts: []
     };
   }
 
   componentDidMount() {
+    this.setState({ isLoading: true });
     const urls = [
       "./api/branch1.json",
       "./api/branch2.json",
@@ -50,14 +51,6 @@ class App extends Component {
         let flat = nested.reduce((acc, it) => [...acc, ...it]);
         console.log(flat);
       });
-
-    // Promise.all([requestOne, requestTwo, requestThree]).then(requestData => {
-    //   this.setState({
-    //     allProducts: requestData.map(data => data),
-    //     isLoading: true
-    //   });
-    //   console.log(requestData);
-    // });
   }
 
   // componentDidMount() {
@@ -101,53 +94,8 @@ class App extends Component {
   //     }
   //   }
 
-  //   function parseJSON(response) {
-  //     return response.json();
-  //   }
-
-  //   console.log(this.state.branchData1 + " state");
-
-  //   let t1 = {
-  //     a: 12,
-  //     b: 8,
-  //     c: 17
-  //   };
-
-  //   let t2 = {
-  //     a: 2,
-  //     b: 4,
-  //     c: 1
-  //   };
-
-  //   let t3 = {
-  //     a: 2,
-  //     b: 4,
-  //     c: 3
-  //   };
-
-  //   function sum(ob1, ob2, ob3) {
-  //     let sum = {};
-
-  //     Object.keys(ob1).forEach(key => {
-  //       if (ob2.hasOwnProperty(key) || ob3.hasOwnProperty(key)) {
-  //         sum[key] = ob1[key] + ob2[key] + ob3[key];
-  //       }
-  //     });
-  //     return sum;
-  //   }
-
-  //   console.log(sum(t1, t2, t3));
-  // }
-
   render() {
     const { allProducts, isLoading, isError } = this.state;
-
-    // const array1 = [1, 2, 3, 4];
-    // const reducer = (accumulator, currentValue) => accumulator + currentValue;
-
-    // // 1 + 2 + 3 + 4
-    // console.log(array1.reduce(reducer));
-    // // console.log(pricesArray.reduce(reducer));
 
     if (isLoading) {
       return <p>Loading...</p>;
