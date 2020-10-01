@@ -10,10 +10,24 @@ class App extends Component {
     this.state = {
       isLoading: true,
       isError: false,
+      searchTerm: "",
       products: [],
+      // This is where I got to, creatiing a search mechanism for the data - commenting out for now
+      // names: ["Claudio", "John", "Bill", "Suzzy", "Bob", "Elizabeth"],
       total: 0
     };
   }
+
+  // This is where I got to, creating a search mechanism for the data
+  editSearch = e => {
+    this.setState({ searchTerm: e.target.value });
+  };
+
+  dynamicSearch = () => {
+    return this.state.names.filter(name =>
+      name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+    );
+  };
 
   componentDidMount() {
     setTimeout(() => {
@@ -80,8 +94,15 @@ class App extends Component {
 
     return (
       <div className="product-list">
-        <label>Search Products</label>
-        <input type="text" />
+        <div className={"search-surround"}>
+          <label>Search Products</label>
+          <input
+            type="text"
+            value={this.state.searchTerm}
+            onChange={this.editSearch}
+            placeholder={"Search for a fruit"}
+          />
+        </div>
         <table>
           <thead>
             <tr>
